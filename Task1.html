@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+    <style>
+        input {
+            width: 400px;
+        }
+        img {
+            width: 350px;
+            height: 250px;
+            border: solid 2px black;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        div {
+            width: px;
+        }
+        button {
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mini søkemotor på dyr</h1>
+    <p>Skriv inn hvilket dyr du vil se bilde av</p>
+    <input id="input" type="text" placeholder="Antilope, Delfin, Fennek, Gepard, Hai, Maursluker eller Tiger">
+    <button id="button" onclick="showPics()">Søk</button>
+    <div id="div-tag"></div>
+
+
+    <script>
+        //Henter element fra body
+        var inputEl = document.getElementById("input");
+        inputEl.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("button").click();
+          }
+    });
+        var divTagEL = document.getElementById("div-tag");
+
+        var animalPics = 
+        {
+            
+                antilope: ["images/Antilope1.jpg", "images/Antilope2.jpg"],
+                delfin: ["images/Delfin1.jpg", "images/Delfin2.jpg", "images/Delfin3.jpg"],
+                fennek: ["images/Fennek3.jpg"],
+                gepard: ["images/Gepard1.jpg", "images/Gepard2.jpg", "images/Gepard3.jpg"],
+                hai: ["images/Hai1.jpg", "images/Hai2.jpg", "images/Hai3.jpg"],
+                maursluker: ["images/Maursluker1.jpg", "images/Maursluker2.jpg"],
+                tiger: ["images/Tiger1.jpg", "images/Tiger2.jpg", "images/Tiger2.webp"],
+        };
+        //Funksjon som kjører når knappen trykkes
+        function showPics () {
+            divTagEL.innerHTML = "";
+            var inputValue = inputEl.value.toLowerCase();
+            switch (inputValue) {
+                case "antilope":
+                    goThroughPics (animalPics.antilope);
+                    break;
+                case "delfin":
+                    goThroughPics (animalPics.delfin);
+                    break;
+                case "fennek":
+                    goThroughPics (animalPics.fennek);
+                    break;
+                case "gepard":
+                    goThroughPics (animalPics.gepard);
+                    break;
+                case "hai":
+                    goThroughPics (animalPics.hai);
+                    break;
+                case "tiger":
+                    goThroughPics (animalPics.tiger);
+                    break;
+                case "maursluker":
+                    goThroughPics (animalPics.maursluker);
+                    break;
+                default:
+                    divTagEL.innerHTML = `<p>Du skrev: "${inputEl.value}", 
+                    er du sikker på at det er et alternativ? Har du skrevet riktig?</p>`;
+                    inputEl.value = "";
+                    break;
+            }
+        }
+        function goThroughPics (objectArray) {
+            for (i=0;i < objectArray.length; i++){
+                divTagEL.innerHTML += `<img src=${objectArray[i]}>`;
+            } inputEl.value = "";
+        }
+
+
+    </script>
+</body>
+</html>

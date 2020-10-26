@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+</head>
+<body>
+    <h1>BMI-kalkulator</h1>
+    <p>Skriv inn høyden din i CM:</p>
+    <input id="heightInput" type="number" placeholder="høyde i CM">
+    <p>Skriv inn vekten din i KG:</p>
+    <input id="weightInput" type="number" placeholder="weight in KG">
+    <button id="button" onclick="getBMI()">Sjekk</button>
+    <div id="div"></div>
+    <script>
+        var inputWeightElement = document.getElementById("weightInput");
+        var inputHeightElement = document.getElementById("heightInput");
+        var divElement = document.getElementById("div");
+        function getBMI () {
+            var weightInput = inputWeightElement.value;
+            var heightInput = inputHeightElement.value;
+            var heightInM = heightInput / 100;
+            var bmiSum = (weightInput / (heightInM*heightInM));
+            var bmiSumFixed = bmiSum.toFixed(1);
+            divElement.innerHTML =
+            `<p>Din BMI er: ${bmiSumFixed} kg/m2</p>
+            <img src="images/BMI.jpg">`;
+            //Nullstiller inputfelt
+            inputHeightElement.value = "";
+            inputWeightElement.value = "";
+        }
+    </script>
+</body>
+</html>

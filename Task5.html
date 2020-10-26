@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+    <style>
+        #main {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%)translateY(-50%);
+        }
+        button {
+            margin: 2px;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+        }
+        input {
+            width: 217px;
+            height: 50px;
+            margin: 4px;
+            text-align: right;
+            font-size: 40px;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            font-family: sans-serif;
+        }
+        body {
+            font-size: 20px;
+            background: linear-gradient(to left,purple, blue);
+        }
+        #zero {
+            width: 107px;
+        }
+        #equal {
+            height: 110px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <h1>Kalkulator</h1>
+    <input id="output">
+    <table id="table">
+        <tr>
+            <td><button onclick=" clearOutput()">C</button></td>
+            <td><button onclick="back()"><</button></td>
+            <td><button onclick="addNumbers('/')">/</button></td>
+            <td><button onclick="addNumbers('*')">x</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="addNumbers(7)">7</button></td>
+            <td><button onclick="addNumbers(8)">8</button></td>
+            <td><button onclick="addNumbers(9)">9</button></td>
+            <td><button onclick="addNumbers('+')">+</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="addNumbers(4)">4</button></td>
+            <td><button onclick="addNumbers(5)">5</button></td>
+            <td><button onclick="addNumbers(6)">6</button></td>
+            <td><button onclick="addNumbers('-')">-</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="addNumbers(1)">1</button></td>
+            <td><button onclick="addNumbers(2)">2</button></td>
+            <td><button onclick="addNumbers(3)">3</button></td>
+            <td rowspan="2"><button id="equal" onclick="equal()">=</button></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button id="zero" onclick="addNumbers(0)">0</button></td>
+            <td><button onclick="addNumbers('.')">.</button></td>
+        </tr>
+    </table>
+    </div>
+    <script>
+        var outputEl = document.getElementById("output");
+        outputEl.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("equal").click();
+          }
+    });
+        var sum = 0;
+        var string = [];
+        function addNumbers (input) {
+            var output = outputEl.value;
+            output += input;
+            outputEl.value = output;
+            string.push(input);
+            return string;
+        }
+        function clearOutput () {
+            outputEl.value = "";
+        }
+        function back() {
+            var exp = outputEl.value;
+            outputEl.value = exp.substring(0,exp.length-1);
+        }
+        function equal () {
+            var exp = outputEl.value;
+            outputEl.value = eval (exp);
+        }
+    </script>
+
+</body>
+</html>
